@@ -15,3 +15,6 @@ python-docx
 python-pptx
 beautifulsoup4
 wikipedia
+pytest
+pytest-cov
+reportlab
