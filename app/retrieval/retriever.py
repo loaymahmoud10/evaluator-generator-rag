@@ -7,13 +7,13 @@ from typing import TypedDict
 from langchain_core.documents import Document
 
 from app.retrieval.vector_store import VectorStore
-
+from app.schemas.state import SourceReference
 
 class RetrievalResult(TypedDict):
     """Normalized result returned by the Retriever."""
 
     retrieved_context: str
-    sources: list[dict[str, str]]
+    sources: list[SourceReference]
 
 
 class Retriever:
@@ -63,7 +63,7 @@ class Retriever:
     @staticmethod
     def _build_source_reference(
         document: Document,
-    ) -> dict[str, str]:
+    ) -> SourceReference:
         """Convert Document metadata into the shared source format."""
         metadata = document.metadata
 
