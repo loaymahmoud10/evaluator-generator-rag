@@ -1,0 +1,17 @@
+langchain
+langchain-core
+langchain-community
+langchain-groq
+langchain-huggingface
+langchain-chroma
+chromadb
+sentence-transformers
+redis
+groq
+python-dotenv
+pydantic
+pymupdf
+python-docx
+python-pptx
+beautifulsoup4
+wikipedia
