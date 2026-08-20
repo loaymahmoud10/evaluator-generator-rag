@@ -28,11 +28,22 @@ class SourceReference(TypedDict, total=False):
     content: str
 
 
+class FeedbackItem(TypedDict, total=False):
+    """A single actionable feedback entry from the Evaluator."""
+
+    criterion: str
+    severity: str
+    issue: str
+    suggestion: str
+
+
 class EvaluationResult(TypedDict, total=False):
     """Structured result produced by the Evaluator."""
 
     decision: EvaluationDecision
-    feedback: str
+    score: int
+    criteria: dict[str, int]
+    feedback: list[FeedbackItem]
 
 
 class WorkflowState(TypedDict, total=False):
