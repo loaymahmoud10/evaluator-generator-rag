@@ -63,19 +63,27 @@ class WikipediaLoader(BaseLoader):
     """Load Wikipedia pages while preserving source metadata."""
 
     def load(self, source: str) -> list[Document]:
-        """Load a Wikipedia page by title/query."""
-        if not source.strip():
+        """Load a Wikipedia page by title/query.
+
+        Accepts either a bare title ("Photosynthesis") or the prefixed form
+        used by the UI/CLI ("wikipedia:Photosynthesis").
+        """
+        query = source.strip()
+        if query.lower().startswith("wikipedia:"):
+            query = query.split(":", 1)[1].strip()
+
+        if not query:
             raise ValueError("Wikipedia query cannot be empty")
 
         backend = WikipediaBackend()
-        documents = backend.load(source)
+        documents = backend.load(query)
 
         for document in documents:
             document.metadata.update(
                 {
-                    "source_id": f"wikipedia:{source}",
+                    "source_id": f"wikipedia:{query}",
                     "source_type": "wikipedia",
-                    "source_name": source,
+                    "source_name": query,
                     "location": "Wikipedia",
                 }
             )

@@ -8,6 +8,7 @@ from pathlib import Path
 from groq import Groq
 from langchain_core.documents import Document
 
+from app.config import settings
 from app.ingestion.base import BaseLoader
 
 
@@ -34,7 +35,7 @@ class AudioLoader(BaseLoader):
         with path.open("rb") as audio_file:
             transcription = client.audio.transcriptions.create(
                 file=audio_file,
-                model="whisper-large-v3-turbo",
+                model=settings.WHISPER_MODEL or "whisper-large-v3-turbo",
                 response_format="json",
                 temperature=0.0,
             )

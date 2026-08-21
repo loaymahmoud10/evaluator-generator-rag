@@ -10,6 +10,31 @@ from langchain_core.documents import Document
 from pptx import Presentation
 from app.ingestion.base import BaseLoader
 
+# Common source-code extensions treated as textual knowledge.
+CODE_EXTENSIONS = {
+    ".py",
+    ".js",
+    ".ts",
+    ".java",
+    ".c",
+    ".cpp",
+    ".h",
+    ".cs",
+    ".go",
+    ".rs",
+    ".rb",
+    ".php",
+    ".sql",
+    ".sh",
+    ".html",
+    ".css",
+    ".json",
+    ".yaml",
+    ".yml",
+    ".xml",
+    ".md",
+}
+
 
 class PDFLoader(BaseLoader):
     """Load PDF files while preserving source metadata."""

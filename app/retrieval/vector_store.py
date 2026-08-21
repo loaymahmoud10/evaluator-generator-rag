@@ -22,6 +22,7 @@ class VectorStore:
             embedding_function=embedding_service.embeddings,
             persist_directory=persist_directory,
         )
+        self.collection_name = collection_name
 
     def add_documents(self, documents: list[Document]) -> None:
         """Add document chunks to the vector store."""
